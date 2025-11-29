@@ -1,29 +1,34 @@
-def heapi(a: list[int], n: int, i: int) -> None:
+from src.compare_items import compare_items
+from typing import TypeVar, Callable, Any
+
+def heapi(a: list[int], n: int, i: int, key_custom: Callable[[TypeVar], Any] | None = None,
+                 cmp_custom: Callable[[TypeVar, TypeVar], int] | None = None) -> None:
     largest: int = i
     left: int = 2 * i + 1
     right: int = 2 * i + 2
 
-    if left < n and a[left] > a[largest]:
+    if left < n and compare_items(a[left], a[largest], key_custom, cmp_custom) == 1:
         largest = left
 
-    if right < n and a[right] > a[largest]:
+    if right < n and compare_items(a[right], a[largest], key_custom, cmp_custom) == 1:
         largest = right
 
     if largest != i:
         a[i], a[largest] = a[largest], a[i]
-        heapi(a, n, largest)
+        heapi(a, n, largest, key_custom, cmp_custom)
 
-def heap_sort(a: list[int]) -> list[int]:
+def heap_sort(a: list[int], key_custom: Callable[[TypeVar], Any] | None = None,
+                 cmp_custom: Callable[[TypeVar, TypeVar], int] | None = None) -> list[int]:
     a: list[int] = a.copy()
     n: int = len(a)
     
     for i in range(n // 2 - 1, -1, -1):
-        heapi(a, n, i)
+        heapi(a, n, i, key_custom, cmp_custom)
     
     for i in range(n - 1, 0, -1):
         a[i], a[0] = a[0], a[i]
-        heapi(a, i, 0)
+        heapi(a, i, 0, key_custom, cmp_custom)
     
     return a
 
-# print(heap_sort(list(map(int, input().split()))))
+# print(heap_sort(list(map(int, input().split())), cmp_custom = lambda a, b: b - a))

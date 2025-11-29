@@ -29,7 +29,6 @@ def main() -> None:
 
     functions_sort = {
         "counting_sort": counting_sort,
-        "heap_sort": heap_sort,
         "radix_sort": radix_sort
     }
 
@@ -109,7 +108,6 @@ def main() -> None:
                 try:
                     arg1 = func_args[1]
                     if "cmp" in arg1:
-                        print(arg1.split("=")[1])
                         cmp = eval(arg1.split("=")[1])
                     elif "key" in arg1:
                         key = eval(arg1.split("=")[1])
@@ -129,6 +127,7 @@ def main() -> None:
             except (ValueError, AttributeError):
                 print("Ошибка: необходимо передать список чисел через пробел")
                 continue
+
 
             print(arr, key, cmp)
 
