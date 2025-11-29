@@ -19,4 +19,4 @@ def bucket_sort(a: list[float], buckets_n: int | None = None) -> list[float]:
 
     return res
 
-print(bucket_sort(list(map(float, input().split()))))
+# print(bucket_sort(list(map(float, input().split()))))

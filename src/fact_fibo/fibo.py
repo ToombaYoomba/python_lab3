@@ -1,4 +1,4 @@
-def fiba(n: int) -> int:
+def fibo(n: int) -> int:
     fib1: int = 1
     fib2: int = 1
 
@@ -16,4 +16,4 @@ def fiba(n: int) -> int:
 
     return fib
 
-# print(fiba(int(input())))
+# print(fibo(int(input())))

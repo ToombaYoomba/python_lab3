@@ -1,2 +1,6 @@
-a = []
-print(a + [1, 2, 3])
+import random
+
+random.seed(None)
+
+a = [1]
+print(a[:10])
