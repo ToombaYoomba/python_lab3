@@ -1,6 +1,9 @@
 from collections import defaultdict
 
 def counting_sort(a: list[int]) -> list[int]:
+    if not a:
+        return []
+    
     counti = defaultdict(int)
 
     for i in a:

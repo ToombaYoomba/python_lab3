@@ -9,8 +9,8 @@ def bucket_sort(a: list[float], buckets_n: int | None = None) -> list[float]:
         bucket_number = int(buckets_n * elem)
         buckets[bucket_number].append(elem)
 
-    for bucket in buckets:
-        bucket = sorted(bucket)
+    for i in range(len(buckets)):
+        buckets[i] = sorted(buckets[i])
 
     res = []
 
