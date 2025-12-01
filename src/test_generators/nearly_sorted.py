@@ -2,6 +2,14 @@ import random
 
 
 def nearly_sorted(n: int, swaps: int, *, seed_custom=None) -> list[int]:
+    '''
+    Принимает длину массива, количество перестановок и кастомный сид
+
+    Генерирует отсортированный рандомный массив целых чисел на указанном сиде
+    Потом меняет swaps элементов между собой
+
+    Возвращает массив целых чисел
+    '''
     random.seed(seed_custom)
 
     arr = sorted(random.sample(range(0, 1001), n))

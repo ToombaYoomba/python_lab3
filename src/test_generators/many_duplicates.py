@@ -1,6 +1,14 @@
 import random
 
 def many_duplicates(n: int, k_unique=5, *, seed_custom=None) -> list[int]:
+    '''
+    Принимает длину массива, число уникальных элементов и кастомный сид
+
+    Генерирует рандомный массив целых чисел на указанном сиде
+    В массиве только k_unique уникальных элементов
+
+    Возвращает массив целых чисел
+    '''
     random.seed(seed_custom)
 
     unique = random.sample(range(0, 1001), k_unique)

@@ -1,44 +1,57 @@
 class Stack:
+    '''
+    Класс стэка на списке
+
+    Принимает начальный массив стэка
+
+    В себе хранит массив стэка
+    '''
     def __init__(self, arr: list[int] = []):
         self.arr: list[int] = arr
-        try:
-            self.mini: int | None = min(arr)
-        except Exception:
-            self.mini: int | None = None
 
     def __len__(self) -> int:
+        '''
+        Возвращает длину стэка
+        '''
         return len(self.arr)
     
-    def new_mini(self) -> None:
-        if not self.arr:
-            self.mini = None
-        else:
-            self.mini = min(self.arr)
+    def __getitem__(self, index):
+        '''
+        Нужен для того, чтобы при вызове min() итератор мог получить элементы массива внутри класса
+        '''
+        return self.arr[index]
 
     def push(self, x: int) -> None:
+        '''
+        Добавляет число вверх стэка
+        '''
         self.arr.append(x)
 
-        self.new_mini()
-
     def is_empty(self) -> bool:
+        '''
+        Проверяет, если стэк пустой
+        '''
         return not self.arr
     
     def peek(self) -> int:
+        '''
+        Возвращает верхний элемент стэка
+        '''
         if not self.arr:
             raise IndexError("peek from empty stack")
         return self.arr[-1]
     
     def pop(self) -> int:
+        '''
+        Возвращает верхний элемент стэка и достаёт его из стэка
+        '''
         if not self.arr:
             raise IndexError("pop from empty stack")
         
         popped = self.arr.pop()
-
-        self.new_mini()
         
         return popped
     
-    def min(self) -> int:
-        if self.mini is None:
-            raise IndexError("no min in empty stack")
-        return self.mini
+# a = Stack([0, 1, 2])
+# print(min(a))
+    

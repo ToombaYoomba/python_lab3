@@ -74,14 +74,14 @@ def test_is_empty(start_stack, res, expectation):
     [
         ([3, 2, 1], 1, does_not_raise()),
         ([5, 5, 5], 5, does_not_raise()),
-        ([], None, pytest.raises(IndexError))
+        ([], None, pytest.raises(ValueError))
     ]
 )
 def test_min(start_stack, res_val, expectation):
     with expectation:
         stack = Stack(start_stack)
         
-        min_val = stack.min()
+        min_val = min(stack)
         assert min_val == res_val
 
 
