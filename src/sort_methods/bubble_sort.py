@@ -13,5 +13,5 @@ def bubble_sort(a: list[int], key_custom: Callable[[TypeVar], Any] | None = None
 
     return a
 
-# print(bubble_sort(list(map(int, input().split())), cmp_custom = lambda a, b: b - a))
+# print(bubble_sort(list(map(int, input().split())), key_custom=abs, cmp_custom = lambda a, b: b - a))
 # print(bubble_sort(list(map(int, input().split()))))
