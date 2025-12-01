@@ -1,7 +1,10 @@
 class Stack:
-    def __init__(self):
-        self.arr: list[int] = list()
-        self.mini: int | None = None
+    def __init__(self, arr: list[int] = []):
+        self.arr: list[int] = arr
+        try:
+            self.mini: int | None = min(arr)
+        except Exception:
+            self.mini: int | None = None
 
     def __len__(self) -> int:
         return len(self.arr)

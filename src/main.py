@@ -2,12 +2,15 @@ from src.fact_fibo.factorial import factorial
 from src.fact_fibo.factorial_recursive import factorial_recursive
 from src.fact_fibo.fibo import fibo
 from src.fact_fibo.fibo_recursive import fibo_recursive
+
 from src.sort_methods.bubble_sort import bubble_sort
 from src.sort_methods.counting_sort import counting_sort
 from src.sort_methods.heap_sort import heap_sort
 from src.sort_methods.quick_sort import quick_sort
 from src.sort_methods.radix_sort import radix_sort
 from src.sort_methods.bucket_sort import bucket_sort
+
+from src.Stack import Stack
 
 from src.test_generators.rand_int_array import rand_int_array
 from src.test_generators.nearly_sorted import nearly_sorted
@@ -19,6 +22,8 @@ from src.benchmark_sorts import benchmark_sorts
 from src.timeit_once import timeit_once
 
 def main() -> None:
+
+    pretty: bool = True # красивость интерфейса; если не удобно, то можно заменить на False
 
     functions_n = {
         'factorial': factorial,
@@ -37,6 +42,8 @@ def main() -> None:
         "heap_sort": heap_sort,
         "quick_sort": quick_sort
     }
+
+    stacks = {}
 
     test_arrays = {
         "small_sorted": [1, 2, 3, 4, 5],
@@ -174,6 +181,57 @@ def main() -> None:
                 else:
                     print(f"  {name}: {[f'{x:.3f}' for x in arr]} (длина={len(arr)})")
 
+        elif function == "Stack":
+            args = args.split("; ")
+            name = args[0]
+            arr = []
+            if len(args) > 1:
+                arr = list(map(int, args[1].split()))
+
+            stacks[name] = Stack(arr)
+
+            print(f"Создан стэк {name}: {stacks[name].arr}")
+
+        elif function in stacks.keys():
+            args = args.split("; ")
+            stack_func = args[0]
+            print(stack_func)
+
+            if stack_func == "push":
+                num = int(args[1])
+                stacks[function].push(num)
+                print(f"Стэк {function}: {stacks[function].arr}")
+
+            elif stack_func == "is_empty":
+                res = stacks[function].is_empty()
+                if res:
+                    print(f"Стэк {function} пустой")
+                else:
+                    print(f"Стэк {function} не пустой: {stacks[function].arr}")
+
+            elif stack_func == "peek":
+                res = stacks[function].peek()
+                print(f"Верхний элемент стэка {function}: {res}")
+
+            elif stack_func == "pop":
+                res = stacks[function].pop()
+                print(f"Забранный верхний элемент стэка {function}: {res}")
+                print(f"Стэк {function}: {stacks[function].arr}")
+
+            elif stack_func == "min":
+                res = stacks[function].min()
+                print(f"Минимальный элемент списка {function}: {res}")
+
+            elif stack_func == "len":
+                res = len(stacks[function])
+                print(f"Длина стэка {function}: {res}")
+
+            else:
+                raise ValueError("Stack function not found")
+
+            
+
+
         elif function == "help":
             print("Доступные функции:")
             print("     Числовые:", ", ".join(functions_n.keys()))
@@ -184,7 +242,8 @@ def main() -> None:
 
         elif function == "q":
             print("=============WORK COMPLETE=============")
-            print('''
+            if pretty:
+                print('''
   ⠀⠀⠀⠀⠀⠀⠀⠀ ⠈⢳⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⡇⠀⢶⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⢋⡼⠁⠀⣸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -205,6 +264,8 @@ def main() -> None:
         
         else:
             raise IndexError("Function not found")  
+        
+        print("\nEnter command =_=")
 
 if __name__ == "__main__":
     main()
