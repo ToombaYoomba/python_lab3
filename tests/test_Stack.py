@@ -14,9 +14,7 @@ from src.Stack import Stack
 )
 def test_push(start_stack, add_val, res_len, expectation):
     with expectation:
-        stack = Stack()
-        stack.arr = start_stack.copy()
-        stack.new_mini()
+        stack = Stack(start_stack)
         
         stack.push(add_val)
         assert len(stack) == res_len
@@ -33,9 +31,7 @@ def test_push(start_stack, add_val, res_len, expectation):
 )
 def test_pop(start_stack, res_val, res_len, expectation):
     with expectation:
-        stack = Stack()
-        stack.arr = start_stack.copy()
-        stack.new_mini()
+        stack = Stack(start_stack)
         
         popped = stack.pop()
         assert popped == res_val
@@ -52,9 +48,7 @@ def test_pop(start_stack, res_val, res_len, expectation):
 )
 def test_peek(start_stack, res_val, expectation):
     with expectation:
-        stack = Stack()
-        stack.arr = start_stack.copy()
-        stack.new_mini()
+        stack = Stack(start_stack)
         
         top = stack.peek()
         assert top == res_val
@@ -69,9 +63,7 @@ def test_peek(start_stack, res_val, expectation):
 )
 def test_is_empty(start_stack, res, expectation):
     with expectation:
-        stack = Stack()
-        stack.arr = start_stack.copy()
-        stack.new_mini()
+        stack = Stack(start_stack)
         
         empty = stack.is_empty()
         assert empty == res
@@ -87,9 +79,7 @@ def test_is_empty(start_stack, res, expectation):
 )
 def test_min(start_stack, res_val, expectation):
     with expectation:
-        stack = Stack()
-        stack.arr = start_stack.copy()
-        stack.new_mini()
+        stack = Stack(start_stack)
         
         min_val = stack.min()
         assert min_val == res_val
@@ -104,9 +94,7 @@ def test_min(start_stack, res_val, expectation):
 )
 def test_len(start_stack, res_len, expectation):
     with expectation:
-        stack = Stack()
-        stack.arr = start_stack.copy()
-        stack.new_mini()
+        stack = Stack(start_stack)
         
         length = len(stack)
         assert length == res_len

@@ -145,10 +145,14 @@ def main() -> None:
             print(f"Время работы: {timing}")
 
         elif function == "bucket_sort":
-            arr = list(map(float, args.split()))
+            args = args.split("; ")
+            arr = list(map(float, args[0].split()))
+            buckets = None
+            if len(args) == 2:
+                buckets = int(args[1])
 
             func = bucket_sort
-            sorted_arr, timing = timeit_once(func, arr)
+            sorted_arr, timing = timeit_once(func, arr, buckets)
 
             print(f"Отсортированный массив: {sorted_arr}")
             print(f"Время работы: {timing}")
@@ -235,7 +239,10 @@ def main() -> None:
         elif function == "help":
             print("Доступные функции:")
             print("     Числовые:", ", ".join(functions_n.keys()))
-            print(f"     Сортировки: {", ".join(functions_sort.keys())}, bucket_sort (для float от 0.0 до 0.1)")
+            print(f"     Сортировки: {", ".join(functions_sort.keys())}, bucket_sort (для float от 0 до 1)")
+            print("     Стэки:")
+            print("           Инициализация: Stack <name>; <array>")
+            print("           Функции: push, is_empty, peek, pop, min, len")
             print("     benchmark - запуск бенчмарка всех сортировок")
             print("     show_arrays - показ созданных рандомных массивов для бенчмарков")
             print("     q - выход\n")
